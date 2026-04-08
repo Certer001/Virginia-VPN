@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Добавление бесплатной подписки Virginia VPN в приложения happ и v2rayTun." />
+  <title>Добавить подписку — Virginia VPN</title>
+  <script>
+    (function () {
+      function readSavedTheme() {
+        try {
+          var raw = localStorage.getItem("virginia-vpn-theme");
+          if (raw == null || raw === "") return null;
+          if (raw === "dark" || raw === "light") return raw;
+          var data = JSON.parse(raw);
+          if (data && (data.theme === "dark" || data.theme === "light")) return data.theme;
+        } catch (err) {}
+        return null;
+      }
+      try {
+        var saved = readSavedTheme();
+        if (saved === "dark" || saved === "light") {
+          document.documentElement.setAttribute("data-theme", saved);
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .app-launch-btn {
+      border: 1px solid var(--line-strong);
+      color: var(--fg);
+      background: #efeff1;
+      min-width: 150px;
+    }
+
+    html[data-theme="dark"] .app-launch-btn {
+      background: #232328;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="logo.png" alt="Virginia VPN" width="100" height="100" draggable="false" />
+        <span class="brand__name">Virginia VPN</span>
+      </a>
+      <div class="header__actions">
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Включить тёмную тему" title="Тема оформления">
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path
+              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+          </svg>
+        </button>
+        <nav class="nav" id="site-nav" aria-label="Основная навигация">
+          <a class="nav__link nav__desktop-only" href="index.html#about">О сервисе</a>
+          <a class="nav__link nav__desktop-only" href="news.html">Новости</a>
+          <a class="nav__link nav__desktop-only" href="index.html#how">Как получить</a>
+          <a class="nav__link nav__link--cta nav__desktop-only nav__link--current" href="subscribe.html" aria-current="page">Подписка</a>
+          <ul class="nav__list nav__mobile-only">
+            <li class="nav__item">
+              <a class="nav__link" href="index.html">Главная</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="index.html#about">О сервисе</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="news.html">Новости</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="index.html#how">Как получить подписку</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link nav__link--current" href="subscribe.html" aria-current="page">Подписка</a>
+            </li>
+          </ul>
+          <a class="nav__cta nav__mobile-only" href="subscribe.html">Добавить подписку</a>
+        </nav>
+      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true" hidden></div>
+
+  <main>
+    <section class="section section--page-top" aria-labelledby="subscribe-heading">
+      <h1 class="section__title reveal" id="subscribe-heading">Подключение бесплатной подписки</h1>
+      <div class="news-preview__inner reveal" style="max-width: 760px; margin: 0 auto;">
+        <article class="news-card">
+          <h2 class="news-card__title">Быстрое подключение</h2>
+          <div class="news-card__body">
+            <p class="news-card__text">
+              Нажмите кнопку нужного приложения. Ссылка подписки автоматически копируется в буфер обмена,
+              после чего откроется приложение.
+            </p>
+            <p class="news-card__text">
+              Ссылка подписки: <span id="sub-link-text">https://vidgetspiner.space/sub/RnJlZVN1YnNjaXB0aW9uLDE3NzU2NzUzMzkRUluFz_ngf</span>
+            </p>
+          </div>
+        </article>
+      </div>
+      <p class="news-preview__more reveal" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn btn--primary app-launch-btn" type="button" id="open-happ">happ</button>
+        <button class="btn btn--primary app-launch-btn" type="button" id="open-v2raytun">v2rayTun</button>
+        <button class="btn btn--primary app-launch-btn" type="button" id="open-koala-clash">Koala Clash</button>
+      </p>
+      <p class="news-preview__more reveal" style="text-align: center;">
+        <a class="btn btn--ghost" href="index.html">← На главную</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer" id="site-footer">
+    <div class="footer__inner">
+      <span class="footer__brand">Virginia VPN</span>
+      <span class="footer__copy">© <span id="year"></span> · Неофициальный сервис доступа. Соблюдайте законы вашей страны.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var SUB_URL = "https://vidgetspiner.space/sub/RnJlZVN1YnNjaXB0aW9uLDE3NzU2NzUzMzkRUluFz_ngf";
+      var HAPP_SCHEME = "happ://";
+      var V2RAYTUN_SCHEME = "v2raytun://";
+      var KOALA_CLASH_SCHEME = "koalaclash://";
+
+      function copySubUrl() {
+        if (!navigator.clipboard || !navigator.clipboard.writeText) return Promise.reject(new Error("clipboard"));
+        return navigator.clipboard.writeText(SUB_URL);
+      }
+
+      function openApp(scheme) {
+        window.location.href = scheme;
+      }
+
+      function handleOpen(scheme, appName) {
+        copySubUrl()
+          .catch(function () {
+            alert("Не удалось автоматически скопировать ссылку. Скопируйте её вручную и откройте " + appName + ".");
+          })
+          .finally(function () {
+            openApp(scheme);
+          });
+      }
+
+      var happBtn = document.getElementById("open-happ");
+      var v2Btn = document.getElementById("open-v2raytun");
+      var koalaBtn = document.getElementById("open-koala-clash");
+
+      if (happBtn) {
+        happBtn.addEventListener("click", function () {
+          handleOpen(HAPP_SCHEME, "happ");
+        });
+      }
+
+      if (v2Btn) {
+        v2Btn.addEventListener("click", function () {
+          handleOpen(V2RAYTUN_SCHEME, "v2rayTun");
+        });
+      }
+
+      if (koalaBtn) {
+        koalaBtn.addEventListener("click", function () {
+          handleOpen(KOALA_CLASH_SCHEME, "Koala Clash");
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

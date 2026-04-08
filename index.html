@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Virginia VPN — бесплатная подписка для стабильного доступа к Telegram." />
+  <title>Virginia VPN — бесплатный доступ к Telegram</title>
+  <script>
+    (function () {
+      function readSavedTheme() {
+        try {
+          var raw = localStorage.getItem("virginia-vpn-theme");
+          if (raw == null || raw === "") return null;
+          if (raw === "dark" || raw === "light") return raw;
+          var data = JSON.parse(raw);
+          if (data && (data.theme === "dark" || data.theme === "light")) return data.theme;
+        } catch (err) {}
+        return null;
+      }
+      try {
+        var saved = readSavedTheme();
+        if (saved === "dark" || saved === "light") {
+          document.documentElement.setAttribute("data-theme", saved);
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="header">
+    <div class="header__inner">
+      <a class="brand" href="#">
+        <img class="brand__logo" src="logo.png" alt="Virginia VPN" width="100" height="100" draggable="false" />
+        <span class="brand__name">Virginia VPN</span>
+      </a>
+      <div class="header__actions">
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Включить тёмную тему" title="Тема оформления">
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path
+              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a class="nav__link nav__desktop-only" href="#about">О сервисе</a>
+        <a class="nav__link nav__desktop-only" href="news.html">Новости</a>
+        <a class="nav__link nav__desktop-only" href="#how">Как получить</a>
+        <a class="nav__link nav__link--cta nav__desktop-only" href="#get">Подписка</a>
+        <ul class="nav__list nav__mobile-only">
+          <li class="nav__item">
+            <a class="nav__link" href="#">Главная</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#about">О сервисе</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="news.html">Новости</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#how">Как получить подписку</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#how">Как это работает</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link" href="#get">Подписка</a>
+          </li>
+          <li class="nav__item">
+            <a class="nav__link nav__link--external" href="https://t.me/" target="_blank" rel="noopener noreferrer">Выдача в Telegram</a>
+          </li>
+        </ul>
+        <a class="nav__cta nav__mobile-only" href="#get">Получить подписку</a>
+        </nav>
+      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true" hidden></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero__content reveal">
+        <p class="eyebrow">Бесплатно · Для Telegram</p>
+        <h1 class="hero__title">Доступ к Telegram без ограничений</h1>
+        <p class="hero__lead">
+          Virginia VPN выдаёт бесплатную подписку — подключайтесь и пользуйтесь мессенджером там, где он недоступен.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#get">
+            Получить подписку
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="btn btn--ghost" href="#how">Как это работает</a>
+        </div>
+      </div>
+      <div class="hero__visual reveal reveal--delay" aria-hidden="true">
+        <div class="hero__orbit">
+          <img class="hero__mark" src="logo.png" alt="" role="presentation" draggable="false" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section__title reveal">Почему Virginia VPN</h2>
+      <div class="features">
+        <article class="feature reveal">
+          <div class="feature__icon-wrap">
+            <svg class="feature__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 16l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature__title">Стабильный доступ</h3>
+          <p class="feature__text">Трафик шифруется — вы подключаетесь к Telegram через защищённый канал.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="feature__icon-wrap">
+            <svg class="feature__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M16 7v18M7 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature__title">Бесплатная подписка</h3>
+          <p class="feature__text">Оформление без оплаты — фокус на доступе к Telegram для всех, кому это нужно.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="feature__icon-wrap">
+            <svg class="feature__icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="10" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 10V8a4 4 0 014-4h4a4 4 0 014 4v2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="feature__title">Минимализм и контроль</h3>
+          <p class="feature__text">Чёткий интерфейс, без лишнего — только то, что нужно для подключения.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--angled" id="how">
+      <div class="section__angled-inner">
+        <h2 class="section__title reveal">Как получить подписку</h2>
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <div class="step__body">
+              <h3 class="step__title">Нажмите «Получить подписку»</h3>
+              <p class="step__text">Перейдите по ссылке в наш Telegram-бот или на страницу выдачи конфигурации.</p>
+            </div>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <div class="step__body">
+              <h3 class="step__title">Следуйте инструкции</h3>
+              <p class="step__text">Установите рекомендуемое приложение и импортируйте выданные данные подписки.</p>
+            </div>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <div class="step__body">
+              <h3 class="step__title">Подключитесь и откройте Telegram</h3>
+              <p class="step__text">Активируйте VPN и пользуйтесь мессенджером в привычном режиме.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--news-preview" id="news-preview" aria-labelledby="news-preview-heading">
+      <h2 class="section__title reveal" id="news-preview-heading">Последняя новость</h2>
+      <div class="news-preview__inner" id="news-preview-inner"></div>
+      <p class="news-preview__more reveal">
+        <a class="btn btn--ghost" href="news.html">Все новости</a>
+      </p>
+    </section>
+
+    <section class="cta" id="get">
+      <div class="cta__inner reveal">
+        <img class="cta__logo" src="logo.png" alt="" role="presentation" width="100" height="100" draggable="false" />
+        <h2 class="cta__title">Готовы к подключению?</h2>
+        <p class="cta__text">Заберите бесплатную подписку Virginia VPN и верните доступ к Telegram.</p>
+        <a class="btn btn--primary btn--large" href="subscribe.html">
+          Добавить бесплатную подписку
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <button type="button" class="scroll-top" id="scroll-top" aria-label="Наверх" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M7 14l5-5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>
+
+  <footer class="footer" id="site-footer">
+    <div class="footer__inner">
+      <span class="footer__brand">Virginia VPN</span>
+      <span class="footer__copy">© <span id="year"></span> · Неофициальный сервис доступа. Соблюдайте законы вашей страны.</span>
+    </div>
+  </footer>
+
+  <script src="news-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
